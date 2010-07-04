@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite failures="0" time="3.874" errors="0" skipped="0" tests="2" name="to.networld.scrawler.tests.IFOAFAgentTest">
+  <properties>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="sun.boot.library.path" value="/opt/icedtea6-bin-1.8.0/jre/lib/amd64"/>
+    <property name="java.vm.version" value="16.0-b13"/>
+    <property name="java.vm.vendor" value="Sun Microsystems Inc."/>
+    <property name="java.vendor.url" value="http://java.sun.com/"/>
+    <property name="path.separator" value=":"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.country" value="DE"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="/home/obale/sourcecode/ai/semantic_crawler"/>
+    <property name="java.runtime.version" value="1.6.0_18-b18"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
+    <property name="basedir" value="/home/obale/sourcecode/ai/semantic_crawler"/>
+    <property name="java.endorsed.dirs" value="/opt/icedtea6-bin-1.8.0/jre/lib/endorsed"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="surefire.real.class.path" value="/tmp/surefirebooter8243500431772802772.jar"/>
+    <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Sun Microsystems Inc."/>
+    <property name="os.name" value="Linux"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/opt/icedtea6-bin-1.8.0/jre/lib/amd64/server:/opt/icedtea6-bin-1.8.0/jre/lib/amd64:/opt/icedtea6-bin-1.8.0/jre/../lib/amd64:/usr/lib64/xulrunner-devel-1.9.2:/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib"/>
+    <property name="surefire.test.class.path" value="/home/obale/sourcecode/ai/semantic_crawler/target/test-classes:/home/obale/sourcecode/ai/semantic_crawler/target/classes:/home/obale/.m2/repository/junit/junit/4.0/junit-4.0.jar:/home/obale/.m2/repository/com/hp/hpl/jena/jena/2.6.3/jena-2.6.3.jar:/home/obale/.m2/repository/com/hp/hpl/jena/iri/0.8/iri-0.8.jar:/home/obale/.m2/repository/com/ibm/icu/icu4j/3.4.4/icu4j-3.4.4.jar:/home/obale/.m2/repository/com/hp/hpl/jena/iri/0.8/iri-0.8-sources.jar:/home/obale/.m2/repository/xerces/xercesImpl/2.7.1/xercesImpl-2.7.1.jar:/home/obale/.m2/repository/org/slf4j/slf4j-api/1.5.8/slf4j-api-1.5.8.jar:/home/obale/.m2/repository/org/slf4j/slf4j-log4j12/1.5.8/slf4j-log4j12-1.5.8.jar:/home/obale/.m2/repository/log4j/log4j/1.2.13/log4j-1.2.13.jar:/home/obale/.m2/repository/com/hp/hpl/jena/arq/2.8.4/arq-2.8.4.jar:/home/obale/.m2/repository/com/hp/hpl/jena/jena/2.6.3/jena-2.6.3-sources.jar:/home/obale/.m2/repository/com/hp/hpl/jena/jena/2.6.3/jena-2.6.3-test-sources.jar:/home/obale/.m2/repository/org/codehaus/woodstox/wstx-asl/3.2.9/wstx-asl-3.2.9.jar:/home/obale/.m2/repository/stax/stax-api/1.0.1/stax-api-1.0.1.jar:/home/obale/.m2/repository/org/apache/lucene/lucene-core/2.3.1/lucene-core-2.3.1.jar:"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="50.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Server Compiler"/>
+    <property name="os.version" value="2.6.34-gentoo-r1"/>
+    <property name="user.home" value="/home/obale"/>
+    <property name="user.timezone" value="Europe/Berlin"/>
+    <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.specification.version" value="1.6"/>
+    <property name="user.name" value="obale"/>
+    <property name="java.class.path" value="/home/obale/sourcecode/ai/semantic_crawler/target/test-classes:/home/obale/sourcecode/ai/semantic_crawler/target/classes:/home/obale/.m2/repository/junit/junit/4.0/junit-4.0.jar:/home/obale/.m2/repository/com/hp/hpl/jena/jena/2.6.3/jena-2.6.3.jar:/home/obale/.m2/repository/com/hp/hpl/jena/iri/0.8/iri-0.8.jar:/home/obale/.m2/repository/com/ibm/icu/icu4j/3.4.4/icu4j-3.4.4.jar:/home/obale/.m2/repository/com/hp/hpl/jena/iri/0.8/iri-0.8-sources.jar:/home/obale/.m2/repository/xerces/xercesImpl/2.7.1/xercesImpl-2.7.1.jar:/home/obale/.m2/repository/org/slf4j/slf4j-api/1.5.8/slf4j-api-1.5.8.jar:/home/obale/.m2/repository/org/slf4j/slf4j-log4j12/1.5.8/slf4j-log4j12-1.5.8.jar:/home/obale/.m2/repository/log4j/log4j/1.2.13/log4j-1.2.13.jar:/home/obale/.m2/repository/com/hp/hpl/jena/arq/2.8.4/arq-2.8.4.jar:/home/obale/.m2/repository/com/hp/hpl/jena/jena/2.6.3/jena-2.6.3-sources.jar:/home/obale/.m2/repository/com/hp/hpl/jena/jena/2.6.3/jena-2.6.3-test-sources.jar:/home/obale/.m2/repository/org/codehaus/woodstox/wstx-asl/3.2.9/wstx-asl-3.2.9.jar:/home/obale/.m2/repository/stax/stax-api/1.0.1/stax-api-1.0.1.jar:/home/obale/.m2/repository/org/apache/lucene/lucene-core/2.3.1/lucene-core-2.3.1.jar:"/>
+    <property name="java.vm.specification.version" value="1.0"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="/opt/icedtea6-bin-1.8.0/jre"/>
+    <property name="java.specification.vendor" value="Sun Microsystems Inc."/>
+    <property name="user.language" value="de"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.6.0_18"/>
+    <property name="java.ext.dirs" value="/opt/icedtea6-bin-1.8.0/jre/lib/ext:/usr/java/packages/lib/ext"/>
+    <property name="sun.boot.class.path" value="/opt/icedtea6-bin-1.8.0/jre/lib/resources.jar:/opt/icedtea6-bin-1.8.0/jre/lib/rt.jar:/opt/icedtea6-bin-1.8.0/jre/lib/sunrsasign.jar:/opt/icedtea6-bin-1.8.0/jre/lib/jsse.jar:/opt/icedtea6-bin-1.8.0/jre/lib/jce.jar:/opt/icedtea6-bin-1.8.0/jre/lib/charsets.jar:/opt/icedtea6-bin-1.8.0/jre/classes"/>
+    <property name="java.vendor" value="Sun Microsystems Inc."/>
+    <property name="localRepository" value="/home/obale/.m2/repository"/>
+    <property name="file.separator" value="/"/>
+    <property name="java.vendor.url.bug" value="http://java.sun.com/cgi-bin/bugreport.cgi"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.cpu.isalist" value=""/>
+  </properties>
+  <testcase time="1.714" classname="to.networld.scrawler.tests.IFOAFAgentTest" name="testGetName"/>
+  <testcase time="2.117" classname="to.networld.scrawler.tests.IFOAFAgentTest" name="testGetFriends"/>
+</testsuite>
