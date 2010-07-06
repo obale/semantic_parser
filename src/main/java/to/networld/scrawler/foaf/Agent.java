@@ -7,8 +7,8 @@ import java.util.Vector;
 
 import org.dom4j.Element;
 
+import to.networld.scrawler.common.RDFParser;
 import to.networld.scrawler.interfaces.IFOAFAgent;
-import to.networld.scrawler.scubadive.RDFParser;
 
 /**
  * Handles a FOAF Agent. The information are read out with the help of XPath queries.
