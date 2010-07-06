@@ -7,47 +7,42 @@ import java.util.Vector;
  *
  */
 public interface IFOAFAgent {
+
+	public abstract String getName();
 	
-	/**
-	 * Returns the unique URI that is related to this entity.
-	 * 
-	 * @return The URI to the FOAF file of this entity.
-	 */
-	public String getURI();
-	
-	/**
-	 * Extracts the name of the agent.
-	 * 
-	 * @return The name of the agent.
-	 */
-	public String getName();
-	
-	/**
-	 * Extracts the gender of the agent.
-	 * 
-	 * @return The gender of the agent.
-	 */
-	public String getGender();
-	
-	/**
-	 * Extract the image URL of the agent.
-	 * 
-	 * @return The image as URL of the agent.
-	 */
-	public String getImageURL();
+	public abstract String getGender();
+
+	public abstract String getImageURL();
+
+	public abstract String getDateOfBirth();
+
+	public abstract String getWebsite();
+
+	public abstract String getWeblog();
+
+	public abstract String getSchoolHomepage();
+
+	public abstract String getWorkplaceHomepage();
+
+	public abstract String getOpenid();
+
+	public abstract Vector<Double> getLocation();
+
+	public abstract Vector<IFOAFAgent> getKnownAgents();
+
+	public abstract Vector<String> getInterests();
+
+	public abstract Vector<String> getEMails();
+
+	public abstract Vector<String> getPhoneNumbers();
 
 	/**
-	 * Extracts the friends aka. known agents from a FOAF file.
+	 * Reads out the dive certificate (see http://scubadive.networld.to for the ontology).
 	 * 
-	 * @return The friend as IFOAFAgent.
+	 * @return The scuba dive certificate.
 	 */
-	public Vector<IFOAFAgent> getFriends();
+	public abstract String getDiveCertificate();
 
-	/**
-	 * Extracts the interests from a FOAF file.
-	 * 
-	 * @return Interests as Strings.
-	 */
-	public Vector<String> getInterests();
+	public abstract String getURI();
 
 }

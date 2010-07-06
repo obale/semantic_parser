@@ -1,6 +1,6 @@
 package to.networld.scrawler.tests;
 
-
+import java.net.URL;
 import java.util.Vector;
 
 import junit.framework.Assert;
@@ -24,7 +24,7 @@ public class IFOAFAgentTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		this.testAgent = new Agent("http://devnull.networld.to/foaf.rdf#me");
+		this.testAgent = new Agent(new URL("http://devnull.networld.to/foaf.rdf"));
 	}
 
 	/**
@@ -35,18 +35,24 @@ public class IFOAFAgentTest {
 		this.testAgent = null;
 	}
 	
+	/**
+	 * XXX: If the FOAF file changes than maybe the test fails. Please be patient.
+	 */
 	@Test
-	public void testGetName() {
-		String name = this.testAgent.getName();
-		Assert.assertEquals("Alex Oberhauser", name);
-	}
-	
-	@Test
-	public void testGetFriends() {
-		Vector<IFOAFAgent> friendVector = this.testAgent.getFriends();
+	public void testPersonalRemoteFOAFFile() {
+		Assert.assertEquals("Alex Oberhauser", this.testAgent.getName());
+		Assert.assertEquals("Male", this.testAgent.getGender());
+		Assert.assertEquals("http://obale.myopenid.com/", this.testAgent.getOpenid());
+		Assert.assertEquals("http://devnull.networld.to/", this.testAgent.getWebsite());
+		Assert.assertEquals("http://networld.to/", this.testAgent.getWeblog());
+		Assert.assertEquals("http://informatik.uibk.ac.at", this.testAgent.getSchoolHomepage());
+		Assert.assertEquals("http://sti2.at", this.testAgent.getWorkplaceHomepage());
+		Assert.assertEquals("[47.263348, 11.346295]", this.testAgent.getLocation().toString());
+		Assert.assertEquals("http://scubadive.networld.to/padi.rdf#AOW", this.testAgent.getDiveCertificate());
+		
+		Vector<IFOAFAgent> friendVector = this.testAgent.getKnownAgents();
 		for ( IFOAFAgent entry : friendVector ) {
 			Assert.assertNotNull(entry.getURI());
 		}
 	}
-
 }

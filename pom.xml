@@ -54,17 +54,6 @@
                 <outputDirectory>target/site</outputDirectory>
         </reporting>
 
-        <repositories>
-                <repository>
-                        <id>jena-repo</id>
-                        <url>http://openjena.org/repo</url>
-                </repository>
-                <repository>
-                        <id>jena-repo-dev</id>
-                        <url>http://openjena.org/repo-dev</url>
-                </repository>
-        </repositories>
-
         <dependencies>
                 <dependency>
                         <groupId>junit</groupId>
@@ -75,14 +64,14 @@
                         <optional>true</optional>
                 </dependency>
                 <dependency>
-                        <groupId>com.hp.hpl.jena</groupId>
-                        <artifactId>jena</artifactId>
-                        <version>2.6.3</version>
+                        <groupId>dom4j</groupId>
+                        <artifactId>dom4j</artifactId>
+                        <version>1.6.1</version>
                 </dependency>
                 <dependency>
-                        <groupId>com.hp.hpl.jena</groupId>
-                        <artifactId>arq</artifactId>
-                        <version>2.8.4</version>
+                        <groupId>jaxen</groupId>
+                        <artifactId>jaxen</artifactId>
+                        <version>1.1-beta-8</version>
                 </dependency>
                 <dependency>
                         <groupId>log4j</groupId>
