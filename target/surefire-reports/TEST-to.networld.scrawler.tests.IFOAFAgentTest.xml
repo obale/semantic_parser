@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.903" errors="0" skipped="0" tests="1" name="to.networld.scrawler.tests.IFOAFAgentTest">
+<testsuite failures="0" time="0.975" errors="0" skipped="0" tests="1" name="to.networld.scrawler.tests.IFOAFAgentTest">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="sun.boot.library.path" value="/opt/icedtea6-bin-1.8.0/jre/lib/amd64"/>
@@ -19,7 +19,7 @@
     <property name="basedir" value="/home/obale/sourcecode/ai/semantic_crawler"/>
     <property name="java.endorsed.dirs" value="/opt/icedtea6-bin-1.8.0/jre/lib/endorsed"/>
     <property name="os.arch" value="amd64"/>
-    <property name="surefire.real.class.path" value="/tmp/surefirebooter5608586854748663492.jar"/>
+    <property name="surefire.real.class.path" value="/tmp/surefirebooter2476375474316612709.jar"/>
     <property name="java.io.tmpdir" value="/tmp"/>
     <property name="line.separator" value="
 "/>
@@ -56,5 +56,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase time="0.887" classname="to.networld.scrawler.tests.IFOAFAgentTest" name="testPersonalRemoteFOAFFile"/>
+  <testcase time="0.958" classname="to.networld.scrawler.tests.IFOAFAgentTest" name="testPersonalRemoteFOAFFile"/>
 </testsuite>
