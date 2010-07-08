@@ -13,4 +13,8 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface RDFEntity {
 	String ontoURI();
+	String concept();
+	
+	String [] altOntoURI() default { };
+	String [] alt() default { };
 }

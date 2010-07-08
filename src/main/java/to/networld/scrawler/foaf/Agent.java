@@ -1,6 +1,5 @@
 package to.networld.scrawler.foaf;
 
-//import java.lang.annotation.Annotation;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
@@ -8,7 +7,6 @@ import java.util.Vector;
 
 import org.dom4j.Element;
 
-//import to.networld.scrawler.annotations.RDFEntity;
 import to.networld.scrawler.common.RDFParser;
 import to.networld.scrawler.interfaces.IFOAFAgent;
 
@@ -33,16 +31,6 @@ public final class Agent extends RDFParser implements IFOAFAgent {
 		this.namespace.put("dive", "http://scubadive.networld.to/dive.rdf#");
 		this.namespace.put("foaf", "http://xmlns.com/foaf/0.1/");
 		this.namespace.put("geo", "http://www.w3.org/2003/01/geo/wgs84_pos#");
-
-		/*
-		 * XXX: Only for testing.
-		Annotation [] ann = IFOAFAgent.class.getAnnotations();
-		for ( Annotation entry : ann ) {
-			RDFEntity rdf = (RDFEntity) entry;
-			System.out.println("Annotation in Agent: " + rdf.ontoURI());
-			
-		}
-		*/
 
 		this.setQueryPrefix();
 	}

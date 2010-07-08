@@ -91,4 +91,11 @@ public class Buddy extends RDFParser implements IScubaDiveBuddy {
 	 * @see to.networld.scrawler.interfaces.IScubaDiveBuddy#getCertNr()
 	 */
 	public String getCertNr() { return this.getExternProfileElement("dive:certnr"); }
+
+	/**
+	 * @see to.networld.scrawler.interfaces.IScubaDiveBuddy#getCertDate()
+	 */
+	@Override
+	public String getCertDate() { return this.getExternProfileElement("dive:certdate"); }
+
 }
