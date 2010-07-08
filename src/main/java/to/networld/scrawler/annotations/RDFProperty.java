@@ -29,6 +29,7 @@ public @interface RDFProperty {
 	String [] alt() default { };
 	
 	String [] subNodeOntoURI() default { };
+	
 	/**
 	 * The first sub node has the deep 1 (one), the second sub node 2 (two) and so one...
 	 * 

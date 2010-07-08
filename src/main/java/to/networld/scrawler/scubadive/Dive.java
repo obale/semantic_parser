@@ -1,6 +1,6 @@
 package to.networld.scrawler.scubadive;
 
-import java.io.File;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 import java.util.Vector;
@@ -21,13 +21,6 @@ public class Dive extends RDFParser implements IScubaDiveDive {
 	private String nodeid = null;
 	private int id = -1;
 	private String name = null;
-	
-	public Dive(File _file, String _nodeID) throws DocumentException {
-		super();
-		this.filename = _file.getAbsolutePath();
-		this.document = this.reader.read(_file);
-		this.initDive(_nodeID);
-	}
 	
 	public Dive(URL _url, String _nodeID) throws DocumentException {
 		super();
@@ -127,9 +120,12 @@ public class Dive extends RDFParser implements IScubaDiveDive {
 		for ( Element entry : nodeList ) {
 			String buddyURI = entry.valueOf("@resource");
 			try {
-				Buddy buddy = new Buddy(new File(this.filename), buddyURI.replace("#", ""));
+				Buddy buddy = new Buddy(new URL(this.filename), buddyURI.replace("#", ""));
 				buddies.add(buddy);
 			} catch (DocumentException e) {
+				e.printStackTrace();
+				continue;
+			} catch (MalformedURLException e) {
 				e.printStackTrace();
 				continue;
 			}
@@ -137,13 +133,8 @@ public class Dive extends RDFParser implements IScubaDiveDive {
 		return buddies;
 	}
 	
-	/**
-	 * @see to.networld.scrawler.interfaces.IScubaDiveDive#getFilename()
-	 */
 	public String getFilename() { return this.filename; }
-	/**
-	 * @see to.networld.scrawler.interfaces.IScubaDiveDive#getNodeID()
-	 */
+	
 	public String getNodeID() { return this.nodeid; }
 	
 	/**

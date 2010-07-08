@@ -107,6 +107,11 @@ public final class Agent extends RDFParser implements IFOAFAgent {
 	public String getWorkplaceHomepage() { return this.getSingleResourceNode("/foaf:workplaceHomepage", "rdf:resource"); }
 	
 	/**
+	 * @see to.networld.scrawler.interfaces.IFOAFAgent#getWorkInfoHomepage()
+	 */
+	public String getWorkInfoHomepage() { return this.getSingleResourceNode("/foaf:workInfoHomepage", "rdf:resource"); }
+	
+	/**
 	 * @see to.networld.scrawler.interfaces.IFOAFAgent#getOpenid()
 	 */
 	public String getOpenid() { return this.getSingleResourceNode("foaf:openid", "rdf:resource"); }
@@ -118,7 +123,10 @@ public final class Agent extends RDFParser implements IFOAFAgent {
 			lat = Double.parseDouble(this.getSingleNode("/geo:lat"));
 			lon = Double.parseDouble(this.getSingleNode("/geo:long"));
 		} catch (Exception e) {
-			e.printStackTrace();
+			/**
+			 * XXX: Not the best practice to swallow the exception, but if there is no gps location we skip this step.
+			 */
+			//e.printStackTrace();
 		}
 		Vector<Double> geo = new Vector<Double>();
 		geo.add(0, lat);

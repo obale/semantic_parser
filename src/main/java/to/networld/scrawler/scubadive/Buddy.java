@@ -20,12 +20,6 @@ public class Buddy extends RDFParser implements IScubaDiveBuddy {
 	private String filename = null;
 	private String nodeid = null;
 	
-	public Buddy(File _file, String _nodeID) throws DocumentException {
-		super();
-		this.filename = _file.getAbsolutePath();
-		this.document = this.reader.read(_file);
-	}
-	
 	public Buddy(URL _url, String _nodeID) throws DocumentException {
 		super();
 		this.filename = _url.getPath();
@@ -73,7 +67,7 @@ public class Buddy extends RDFParser implements IScubaDiveBuddy {
 			} catch (DocumentException e) {
 				e.printStackTrace();
 			} finally {
-				this.document = oldDocument;	
+				this.document = oldDocument;
 			}
 		}
 		return null;

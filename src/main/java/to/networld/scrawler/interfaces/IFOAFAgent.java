@@ -37,15 +37,20 @@ public interface IFOAFAgent {
 
 	@RDFProperty(ontoURI=Ontologies.foafURI, value="workplaceHomepage", type = Type.RESOURCE)
 	public abstract String getWorkplaceHomepage();
+	
+	@RDFProperty(ontoURI=Ontologies.foafURI, value="workInfoHomepage", type = Type.RESOURCE)
+	public abstract String getWorkInfoHomepage();
 
 	@RDFProperty(ontoURI=Ontologies.foafURI, value="openid")
 	public abstract String getOpenid();
 
 	@RDFProperty(
-			ontoURI=Ontologies.foafURI,
-			value="Point",
+			ontoURI=Ontologies.geoURI,
+			value = "Point",
+			type = Type.ROOTNODE, 
 			subNode= { "lat", "long" },
 			subNodeDeep = { 1, 1 },
+			subNodeOntoURI = { Ontologies.geoURI, Ontologies.geoURI },
 			subNodeType = { Type.LITERAL, Type.LITERAL } )
 	public abstract Vector<Double> getLocation();
 
