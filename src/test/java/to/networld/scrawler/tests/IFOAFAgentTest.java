@@ -50,9 +50,9 @@ public class IFOAFAgentTest {
 		Assert.assertEquals("[47.263348, 11.346295]", this.testAgent.getLocation().toString());
 		Assert.assertEquals("http://scubadive.networld.to/padi.rdf#AOW", this.testAgent.getDiveCertificate());
 		
-		Vector<IFOAFAgent> friendVector = this.testAgent.getKnownAgents();
-		for ( IFOAFAgent entry : friendVector ) {
-			Assert.assertNotNull(entry.getURI());
+		Vector<String> friendVector = this.testAgent.getKnownAgents();
+		for ( String entry : friendVector ) {
+			Assert.assertNotNull(entry);
 		}
 	}
 }

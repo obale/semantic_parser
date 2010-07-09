@@ -55,7 +55,7 @@ public interface IFOAFAgent {
 	public abstract Vector<Double> getLocation();
 
 	@RDFProperty(ontoURI=Ontologies.foafURI, value="knows", type = Type.RESOURCE)
-	public abstract Vector<IFOAFAgent> getKnownAgents();
+	public abstract Vector<String> getKnownAgents();
 
 	@RDFProperty(ontoURI=Ontologies.foafURI, value="interest", type = Type.RESOURCE_LITERAL)
 	public abstract Vector<String> getInterests();

@@ -109,7 +109,7 @@ public class Dive extends RDFParser implements IScubaDiveDive {
 	/**
 	 * @see to.networld.scrawler.interfaces.IScubaDiveDive#getGeoImage()
 	 */
-	public String getGeoImage() { return this.getSingleResourceNode("geo:image", "resource"); }
+	public String getGeoImage() { return this.getSingleNodeResource("geo:image", "resource"); }
 	
 	/**
 	 * @see to.networld.scrawler.interfaces.IScubaDiveDive#getBuddies()

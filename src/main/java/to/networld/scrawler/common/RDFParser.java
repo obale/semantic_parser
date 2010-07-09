@@ -3,6 +3,7 @@ package to.networld.scrawler.common;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Vector;
 
 import org.dom4j.Document;
 import org.dom4j.Element;
@@ -70,13 +71,47 @@ public class RDFParser {
 	 * Please set before you call the function the variables this.namespace and this.queryPrefix.
 	 * 
 	 * @param _nodeName The name of the node for example 'dive:name'
+	 * @return The string representation of the given node. If found more than one times the Vector has more elements.
+	 */
+	protected Vector<String> getNodes(String _nodeName) {
+		List<Element> nodeList = this.getLinkNodes(this.queryPrefix + "/" + _nodeName, this.namespace);
+		Vector<String> retValues = new Vector<String>();
+		for ( Element entry : nodeList ) {
+			String str = entry.getTextTrim();
+			if ( !str.equals("") )
+				retValues.add(str);
+		}
+		return retValues;
+	}
+	
+	/**
+	 * Please set before you call the function the variables this.namespace and this.queryPrefix.
+	 * 
+	 * @param _nodeName The name of the node for example 'dive:name'
 	 * @return The resource as string representation of the given node.
 	 */
-	protected String getSingleResourceNode(String _nodeName, String _resourceName) {
+	protected String getSingleNodeResource(String _nodeName, String _resourceName) {
 		List<Element> nodeList = this.getLinkNodes(this.queryPrefix + "/" + _nodeName, this.namespace);
 		if ( nodeList.size() > 0 )
 			return nodeList.get(0).valueOf("@" + _resourceName);
 		else
 			return null;
+	}
+
+	/**
+	 * Please set before you call the function the variables this.namespace and this.queryPrefix.
+	 * 
+	 * @param _nodeName The name of the node for example 'dive:name'
+	 * @return The resource as string representation of the given node. If found more than one times the Vector has more elements.
+	 */
+	protected Vector<String> getNodesResource(String _nodeName, String _resourceName) {
+		List<Element> nodeList = this.getLinkNodes(this.queryPrefix + "/" + _nodeName, this.namespace);
+		Vector<String> retValues = new Vector<String>();
+		for ( Element entry : nodeList ) {
+			String str = entry.valueOf("@" + _resourceName);
+			if ( !str.equals("") )
+				retValues.add(str);
+		}
+		return retValues;
 	}
 }

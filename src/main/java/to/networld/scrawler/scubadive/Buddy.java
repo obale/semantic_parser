@@ -51,7 +51,7 @@ public class Buddy extends RDFParser implements IScubaDiveBuddy {
 	 * @see to.networld.scrawler.interfaces.IScubaDiveBuddy#getRole()
 	 */
 	public String getRole() { return this.getSingleNode("dive:role"); }
-	private String[] getDiverProfileURI() { return this.getSingleResourceNode("dive:seeDiverProfile", "resource").split("#"); }
+	private String[] getDiverProfileURI() { return this.getSingleNodeResource("dive:seeDiverProfile", "resource").split("#"); }
 	
 	private String getExternProfileElement(String _nodeName) {
 		String [] uri = this.getDiverProfileURI();
