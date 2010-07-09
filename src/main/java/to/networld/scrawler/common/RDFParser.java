@@ -1,11 +1,13 @@
 package to.networld.scrawler.common;
 
+import java.net.URL;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
 
 import org.dom4j.Document;
+import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 import org.jaxen.JaxenException;
@@ -21,13 +23,16 @@ import org.jaxen.dom4j.Dom4jXPath;
  *
  */
 public class RDFParser {
+	protected final URL url;
 	protected final SAXReader reader;
 	protected Document document;
 	protected HashMap<String, String> namespace = new HashMap<String, String>();
 	protected String queryPrefix = "/";
 	
-	public RDFParser() {
+	public RDFParser(URL _url) throws DocumentException {
 		this.reader = new SAXReader();
+		this.url = _url;
+		this.document = this.reader.read(_url);
 		this.initDefaultNamespace();
 	}
 	
@@ -114,4 +119,6 @@ public class RDFParser {
 		}
 		return retValues;
 	}
+	
+	public String getURI() { return this.url.toString(); }
 }

@@ -12,7 +12,7 @@ import to.networld.scrawler.common.Ontologies;
  *
  */
 @RDFEntity(ontoURI = Ontologies.foafURI, concept="Agent")
-public interface IFOAFAgent {
+public interface IFOAFAgent extends IRDFEntity {
 	
 	@RDFProperty(ontoURI=Ontologies.foafURI, value="name")
 	public abstract String getName();
@@ -54,10 +54,13 @@ public interface IFOAFAgent {
 			subNodeType = { Type.LITERAL, Type.LITERAL } )
 	public abstract Vector<Double> getLocation();
 
-	@RDFProperty(ontoURI=Ontologies.foafURI, value="knows", type = Type.RESOURCE)
+	@RDFProperty(ontoURI = Ontologies.foafURI, value = "knows", type = Type.RESOURCE)
 	public abstract Vector<String> getKnownAgents();
+	
+	@RDFProperty(ontoURI = Ontologies.foafURI, value = "publications", type = Type.RESOURCE)
+	public abstract Vector<String> getPublications();
 
-	@RDFProperty(ontoURI=Ontologies.foafURI, value="interest", type = Type.RESOURCE_LITERAL)
+	@RDFProperty(ontoURI = Ontologies.foafURI, value = "interest", type = Type.RESOURCE_LITERAL)
 	public abstract Vector<String> getInterests();
 
 	@RDFProperty(ontoURI=Ontologies.foafURI, value="mbox")
@@ -68,7 +71,4 @@ public interface IFOAFAgent {
 
 	@RDFProperty(ontoURI=Ontologies.diveURI, value="hasCertification", type = Type.RESOURCE)
 	public abstract String getDiveCertificate();
-
-	public abstract String getURI();
-
 }

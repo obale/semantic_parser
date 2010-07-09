@@ -23,7 +23,7 @@ public class Dive extends RDFParser implements IScubaDiveDive {
 	private String name = null;
 	
 	public Dive(URL _url, String _nodeID) throws DocumentException {
-		super();
+		super(_url);
 		this.filename = _url.getPath();
 		this.document = this.reader.read(_url);
 		this.initDive(_nodeID);

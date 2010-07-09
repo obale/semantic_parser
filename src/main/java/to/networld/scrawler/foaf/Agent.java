@@ -16,7 +16,6 @@ import to.networld.scrawler.interfaces.IFOAFAgent;
  *
  */
 public final class Agent extends RDFParser implements IFOAFAgent {		
-	private final String uri;
 	
 	/**
 	 * 
@@ -24,8 +23,7 @@ public final class Agent extends RDFParser implements IFOAFAgent {
 	 * @throws Exception Generic exception, doesn't matter what error occurs the agent could not be instantiated.
 	 */
 	public Agent(URL _url) throws Exception {
-		this.uri = _url.toString();
-		this.document = this.reader.read(_url);
+		super(_url);
 		this.namespace.put("dive", "http://scubadive.networld.to/dive.rdf#");
 		this.namespace.put("foaf", "http://xmlns.com/foaf/0.1/");
 		this.namespace.put("geo", "http://www.w3.org/2003/01/geo/wgs84_pos#");
@@ -104,12 +102,12 @@ public final class Agent extends RDFParser implements IFOAFAgent {
 	/**
 	 * @see to.networld.scrawler.interfaces.IFOAFAgent#getWorkplaceHomepage()
 	 */
-	public String getWorkplaceHomepage() { return this.getSingleNodeResource("/foaf:workplaceHomepage", "rdf:resource"); }
+	public String getWorkplaceHomepage() { return this.getSingleNodeResource("foaf:workplaceHomepage", "rdf:resource"); }
 	
 	/**
 	 * @see to.networld.scrawler.interfaces.IFOAFAgent#getWorkInfoHomepage()
 	 */
-	public String getWorkInfoHomepage() { return this.getSingleNodeResource("/foaf:workInfoHomepage", "rdf:resource"); }
+	public String getWorkInfoHomepage() { return this.getSingleNodeResource("foaf:workInfoHomepage", "rdf:resource"); }
 	
 	/**
 	 * @see to.networld.scrawler.interfaces.IFOAFAgent#getOpenid()
@@ -145,6 +143,11 @@ public final class Agent extends RDFParser implements IFOAFAgent {
 	}
 	
 	/**
+	 * @see to.networld.scrawler.interfaces.IFOAFAgent#getPublications()
+	 */
+	public Vector<String> getPublications() { return this.getNodesResource("foaf:publications", "rdf:resource"); }
+	
+	/**
 	 * @see to.networld.scrawler.interfaces.IFOAFAgent#getInterests()
 	 */
 	public Vector<String> getInterests() { return this.getNodesResource("foaf:interest", "rdfs:label"); }
@@ -163,9 +166,4 @@ public final class Agent extends RDFParser implements IFOAFAgent {
 	 * @see to.networld.scrawler.interfaces.IFOAFAgent#getDiveCertificate()
 	 */
 	public String getDiveCertificate() { return this.getSingleNodeResource("dive:hasCertification", "rdf:resource"); }
-	
-	/**
-	 * @see to.networld.scrawler.interfaces.IFOAFAgent#getURI()
-	 */
-	public String getURI() { return this.uri; }
 }

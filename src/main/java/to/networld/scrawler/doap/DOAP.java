@@ -1,6 +1,9 @@
 package to.networld.scrawler.doap;
 
+import java.net.URL;
 import java.util.Vector;
+
+import org.dom4j.DocumentException;
 
 import to.networld.scrawler.common.RDFParser;
 import to.networld.scrawler.interfaces.IDOAP;
@@ -11,6 +14,14 @@ import to.networld.scrawler.interfaces.IFOAFAgent;
  *
  */
 public class DOAP extends RDFParser implements IDOAP {
+
+	/**
+	 * @param url
+	 * @throws DocumentException
+	 */
+	public DOAP(URL url) throws DocumentException {
+		super(url);
+	}
 
 	/**
 	 * @see to.networld.scrawler.interfaces.IDOAP#getBugDatabase()

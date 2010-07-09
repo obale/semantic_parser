@@ -39,7 +39,7 @@ public class IFOAFAgentTest {
 	 * XXX: If the FOAF file changes than maybe the test fails. Please be patient.
 	 */
 	@Test
-	public void testPersonalRemoteFOAFFile() {
+	public void testPersonalFOAFFileFirst() {
 		Assert.assertEquals("Alex Oberhauser", this.testAgent.getName());
 		Assert.assertEquals("Male", this.testAgent.getGender());
 		Assert.assertEquals("http://obale.myopenid.com/", this.testAgent.getOpenid());

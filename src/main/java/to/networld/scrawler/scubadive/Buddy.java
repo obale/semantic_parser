@@ -21,7 +21,7 @@ public class Buddy extends RDFParser implements IScubaDiveBuddy {
 	private String nodeid = null;
 	
 	public Buddy(URL _url, String _nodeID) throws DocumentException {
-		super();
+		super(_url);
 		this.filename = _url.getPath();
 		this.document = this.reader.read(_url);
 		this.initDive(_nodeID);
