@@ -51,13 +51,13 @@ public final class Agent extends RDFParser implements IFOAFAgent {
 	 * @see to.networld.scrawler.interfaces.IFOAFAgent#getName()
 	 */
 	public String getName() {
-		List<Element> nameNodes = this.getLinkNodes(this.queryPrefix + "/foaf:name");
-		if ( nameNodes.size() == 0 ) {
+		String name = this.getSingleNode("foaf:name");
+		if ( name == null || name.equals("") ) {
 			String firstname = this.getSingleNode("foaf:firstName");
 			String surname = this.getSingleNode("foaf:surname");
 			return firstname + " " + surname;
 		}
-		return nameNodes.get(0).getText();
+		return name;
 	}
 	
 	/**
@@ -70,13 +70,10 @@ public final class Agent extends RDFParser implements IFOAFAgent {
 	 * @see to.networld.scrawler.interfaces.IFOAFAgent#getImageURL()
 	 */
 	public String getImageURL() {
-		List<Element> nameNodes = this.getLinkNodes(this.queryPrefix + "/foaf:img");
-		if ( nameNodes.size() > 0 )
-			return nameNodes.get(0).valueOf("@rdf:resource");
-		nameNodes = this.getLinkNodes(this.queryPrefix + "/foaf:depiction");
-		if  (nameNodes.size() > 0)
-			return nameNodes.get(0).valueOf("@rdf:resource");
-		return "";
+		String image = this.getSingleNodeResource("foaf:depiction", "rdf:resource");
+		if ( image == null || image.equals("") )
+			image = this.getSingleNodeResource("foaf:img", "rdf:resource");
+		return image;
 	}
 	
 	/**
@@ -115,8 +112,8 @@ public final class Agent extends RDFParser implements IFOAFAgent {
 	public String getOpenid() { return this.getSingleNodeResource("foaf:openid", "rdf:resource"); }
 	
 	public Vector<Double> getLocation() {
-		double lat = 0.0;
-		double lon = 0.0;
+		double lat = -1.0;
+		double lon = -1.0;
 		try {
 			lat = Double.parseDouble(this.getSingleNode("/geo:lat"));
 			lon = Double.parseDouble(this.getSingleNode("/geo:long"));
@@ -124,7 +121,7 @@ public final class Agent extends RDFParser implements IFOAFAgent {
 			/**
 			 * XXX: Not the best practice to swallow the exception, but if there is no gps location we skip this step.
 			 */
-			//e.printStackTrace();
+			return null;
 		}
 		Vector<Double> geo = new Vector<Double>();
 		geo.add(0, lat);
