@@ -9,22 +9,22 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import to.networld.scrawler.foaf.Agent;
-import to.networld.scrawler.interfaces.IFOAFAgent;
+import to.networld.scrawler.foaf.Person;
+import to.networld.scrawler.interfaces.IFOAFPerson;
 
 /**
  * @author Alex Oberhauser
  *
  */
 public class IFOAFAgentTest {
-	private IFOAFAgent testAgent;
+	private IFOAFPerson testAgent;
 
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
-		this.testAgent = new Agent(new URL("http://devnull.networld.to/foaf.rdf"));
+		this.testAgent = new Person(new URL("http://devnull.networld.to/foaf.rdf"));
 	}
 
 	/**

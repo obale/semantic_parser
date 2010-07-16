@@ -7,22 +7,22 @@ import java.util.Vector;
 import org.dom4j.Element;
 
 import to.networld.scrawler.common.RDFParser;
-import to.networld.scrawler.interfaces.IFOAFAgent;
+import to.networld.scrawler.interfaces.IFOAFPerson;
 
 /**
- * Handles a FOAF Agent. The information are read out with the help of XPath queries.
+ * Handles a FOAF Person. The information are read out with the help of XPath queries.
  * 
  * @author Alex Oberhauser
  *
  */
-public final class Agent extends RDFParser implements IFOAFAgent {		
+public final class Person extends RDFParser implements IFOAFPerson {		
 	
 	/**
 	 * 
 	 * @param _url The URL that points to a valid FOAF file
 	 * @throws Exception Generic exception, doesn't matter what error occurs the agent could not be instantiated.
 	 */
-	public Agent(URL _url) throws Exception {
+	public Person(URL _url) throws Exception {
 		super(_url);
 		this.namespace.put("dive", "http://scubadive.networld.to/dive.rdf#");
 		this.namespace.put("foaf", "http://xmlns.com/foaf/0.1/");
@@ -48,7 +48,7 @@ public final class Agent extends RDFParser implements IFOAFAgent {
 
 	/**
 	 * TODO: Abstract this part
-	 * @see to.networld.scrawler.interfaces.IFOAFAgent#getName()
+	 * @see to.networld.scrawler.interfaces.IFOAFPerson#getName()
 	 */
 	public String getName() {
 		String name = this.getSingleNode("foaf:name");
@@ -61,13 +61,13 @@ public final class Agent extends RDFParser implements IFOAFAgent {
 	}
 	
 	/**
-	 * @see to.networld.scrawler.interfaces.IFOAFAgent#getGender()
+	 * @see to.networld.scrawler.interfaces.IFOAFPerson#getGender()
 	 */
 	public String getGender() { return this.getSingleNode("foaf:gender"); }
 	
 	/**
 	 * TODO: Abstract this part.
-	 * @see to.networld.scrawler.interfaces.IFOAFAgent#getImageURL()
+	 * @see to.networld.scrawler.interfaces.IFOAFPerson#getImageURL()
 	 */
 	public String getImageURL() {
 		String image = this.getSingleNodeResource("foaf:depiction", "rdf:resource");
@@ -77,37 +77,37 @@ public final class Agent extends RDFParser implements IFOAFAgent {
 	}
 	
 	/**
-	 * @see to.networld.scrawler.interfaces.IFOAFAgent#getDateOfBirth()
+	 * @see to.networld.scrawler.interfaces.IFOAFPerson#getDateOfBirth()
 	 */
 	public String getDateOfBirth() { return this.getSingleNode("foaf:dateOfBirth"); }
 	
 	/**
-	 * @see to.networld.scrawler.interfaces.IFOAFAgent#getWebsite()
+	 * @see to.networld.scrawler.interfaces.IFOAFPerson#getWebsite()
 	 */
 	public String getWebsite() { return this.getSingleNodeResource("foaf:homepage", "rdf:resource"); }
 	
 	/**
-	 * @see to.networld.scrawler.interfaces.IFOAFAgent#getWeblog()
+	 * @see to.networld.scrawler.interfaces.IFOAFPerson#getWeblog()
 	 */
 	public String getWeblog() { return this.getSingleNodeResource("foaf:weblog", "rdf:resource"); }
 	
 	/**
-	 * @see to.networld.scrawler.interfaces.IFOAFAgent#getSchoolHomepage()
+	 * @see to.networld.scrawler.interfaces.IFOAFPerson#getSchoolHomepage()
 	 */
 	public String getSchoolHomepage() { return this.getSingleNodeResource("/foaf:schoolHomepage", "rdf:resource"); }
 	
 	/**
-	 * @see to.networld.scrawler.interfaces.IFOAFAgent#getWorkplaceHomepage()
+	 * @see to.networld.scrawler.interfaces.IFOAFPerson#getWorkplaceHomepage()
 	 */
 	public String getWorkplaceHomepage() { return this.getSingleNodeResource("foaf:workplaceHomepage", "rdf:resource"); }
 	
 	/**
-	 * @see to.networld.scrawler.interfaces.IFOAFAgent#getWorkInfoHomepage()
+	 * @see to.networld.scrawler.interfaces.IFOAFPerson#getWorkInfoHomepage()
 	 */
 	public String getWorkInfoHomepage() { return this.getSingleNodeResource("foaf:workInfoHomepage", "rdf:resource"); }
 	
 	/**
-	 * @see to.networld.scrawler.interfaces.IFOAFAgent#getOpenid()
+	 * @see to.networld.scrawler.interfaces.IFOAFPerson#getOpenid()
 	 */
 	public String getOpenid() { return this.getSingleNodeResource("foaf:openid", "rdf:resource"); }
 	
@@ -130,7 +130,7 @@ public final class Agent extends RDFParser implements IFOAFAgent {
 	}
 	
 	/**
-	 * @see to.networld.scrawler.interfaces.IFOAFAgent#getKnownAgents()
+	 * @see to.networld.scrawler.interfaces.IFOAFPerson#getKnownAgents()
 	 */
 	public Vector<String> getKnownAgents() {
 		Vector<String> retValues = new Vector<String>();
@@ -140,27 +140,27 @@ public final class Agent extends RDFParser implements IFOAFAgent {
 	}
 	
 	/**
-	 * @see to.networld.scrawler.interfaces.IFOAFAgent#getPublications()
+	 * @see to.networld.scrawler.interfaces.IFOAFPerson#getPublications()
 	 */
 	public Vector<String> getPublications() { return this.getNodesResource("foaf:publications", "rdf:resource"); }
 	
 	/**
-	 * @see to.networld.scrawler.interfaces.IFOAFAgent#getInterests()
+	 * @see to.networld.scrawler.interfaces.IFOAFPerson#getInterests()
 	 */
 	public Vector<String> getInterests() { return this.getNodesResource("foaf:interest", "rdfs:label"); }
 	
 	/**
-	 * @see to.networld.scrawler.interfaces.IFOAFAgent#getEMails()
+	 * @see to.networld.scrawler.interfaces.IFOAFPerson#getEMails()
 	 */
 	public Vector<String> getEMails() { return this.getNodesResource("foaf:mbox", "rdf:resource"); }
 	
 	/**
-	 * @see to.networld.scrawler.interfaces.IFOAFAgent#getPhoneNumbers()
+	 * @see to.networld.scrawler.interfaces.IFOAFPerson#getPhoneNumbers()
 	 */
 	public Vector<String> getPhoneNumbers() { return this.getNodesResource("foaf:phone", "rdf:resource"); }
 	
 	/**
-	 * @see to.networld.scrawler.interfaces.IFOAFAgent#getDiveCertificate()
+	 * @see to.networld.scrawler.interfaces.IFOAFPerson#getDiveCertificate()
 	 */
 	public String getDiveCertificate() { return this.getSingleNodeResource("dive:hasCertification", "rdf:resource"); }
 }

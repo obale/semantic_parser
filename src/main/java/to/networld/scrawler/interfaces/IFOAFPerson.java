@@ -12,7 +12,7 @@ import to.networld.scrawler.common.Ontologies;
  *
  */
 @RDFEntity(ontoURI = Ontologies.foafURI, concept="Agent")
-public interface IFOAFAgent extends IRDFEntity {
+public interface IFOAFPerson extends IRDFEntity {
 	
 	@RDFProperty(ontoURI=Ontologies.foafURI, value="name")
 	public abstract String getName();
