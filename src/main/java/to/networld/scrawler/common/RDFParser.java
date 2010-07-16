@@ -36,6 +36,13 @@ public class RDFParser {
 		this.initDefaultNamespace();
 	}
 	
+	public RDFParser(Document _document) {
+		this.reader = new SAXReader();
+		this.url = null;
+		this.document = _document;
+		this.initDefaultNamespace();
+	}
+	
 	protected void initDefaultNamespace() {
 		this.namespace.put("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
 		this.namespace.put("rdfs", "http://www.w3.org/2000/01/rdf-schema#");

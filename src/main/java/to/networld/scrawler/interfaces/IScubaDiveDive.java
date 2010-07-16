@@ -6,7 +6,6 @@ import to.networld.scrawler.annotations.RDFEntity;
 import to.networld.scrawler.annotations.RDFProperty;
 import to.networld.scrawler.annotations.RDFProperty.Type;
 import to.networld.scrawler.common.Ontologies;
-import to.networld.scrawler.scubadive.Buddy;
 
 /**
  * @author Alex Oberhauser
@@ -23,6 +22,9 @@ public interface IScubaDiveDive {
 	
 	@RDFProperty(ontoURI = Ontologies.diveURI, value = "divesite", type = Type.LITERAL)
 	public abstract String getDivesite();
+	
+	@RDFProperty(ontoURI = Ontologies.diveURI, value = "divebase", type = Type.LITERAL)
+	public abstract String getDivebase();
 
 	@RDFProperty(ontoURI = Ontologies.diveURI, value = "location", type = Type.LITERAL)
 	public abstract String getLocation();
@@ -69,8 +71,11 @@ public interface IScubaDiveDive {
 	@RDFProperty(ontoURI = Ontologies.geoURI, value = "image", type = Type.RESOURCE)
 	public abstract String getGeoImage();
 
+	@RDFProperty(ontoURI = Ontologies.diveURI, value = "diver", type = Type.RESOURCE)
+	public abstract IScubaDiveBuddy getDiver();
+	
 	@RDFProperty(ontoURI = Ontologies.diveURI, value = "partner", type = Type.RESOURCE)
-	public abstract Vector<Buddy> getBuddies();
+	public abstract Vector<IScubaDiveBuddy> getBuddies();
 
 	@RDFProperty(ontoURI = Ontologies.diveURI, value = "id", type = Type.LITERAL)
 	public abstract int getID();
