@@ -7,12 +7,12 @@ import to.networld.scrawler.annotations.RDFProperty;
 import to.networld.scrawler.annotations.RDFProperty.Type;
 import to.networld.scrawler.common.Ontologies;
 
-/**
+/*
  * @author Alex Oberhauser
  *
  */
 @RDFEntity(ontoURI = Ontologies.foafURI, concept = "Organization")
-public interface IDOAP {
+public interface IDOAPOrganization {
 	
 	@RDFProperty(ontoURI = Ontologies.foafURI, value = "name", type = Type.LITERAL)
 	public String getName();
@@ -68,7 +68,7 @@ public interface IDOAP {
 			subNode = { "Person" },
 			subNodeDeep = { 1 },
 			subNodeType = { Type.RESOURCE } )
-	public Vector<IFOAFAgent> getMaintainer();
+	public Vector<String> getMaintainer();
 	
 	@RDFProperty(
 			ontoURI = Ontologies.doapURI,
@@ -78,7 +78,7 @@ public interface IDOAP {
 			subNode = { "Person" },
 			subNodeDeep = { 1 },
 			subNodeType = { Type.RESOURCE } )
-	public Vector<IFOAFAgent> getDeveloper();
+	public Vector<String> getDeveloper();
 	
 	@RDFProperty(
 			ontoURI = Ontologies.foafURI,
