@@ -1,3 +1,23 @@
+/**
+ * Semantic Crawler Library
+ *
+ * Copyright (C) 2010 by Networld Project
+ * Written by Alex Oberhauser <oberhauseralex@networld.to>
+ * All Rights Reserved
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by 
+ * the Free Software Foundation, version 3 of the License.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of 
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this software.  If not, see <http://www.gnu.org/licenses/>
+ */
+
 package to.networld.scrawler.foaf;
 
 import java.net.URL;
@@ -47,9 +67,9 @@ public final class Person extends RDFParser implements IFOAFPerson {
 	}
 
 	/**
-	 * TODO: Abstract this part
 	 * @see to.networld.scrawler.interfaces.IFOAFPerson#getName()
 	 */
+	@Override
 	public String getName() {
 		String name = this.getSingleNode("foaf:name");
 		if ( name == null || name.equals("") ) {
@@ -66,9 +86,9 @@ public final class Person extends RDFParser implements IFOAFPerson {
 	public String getGender() { return this.getSingleNode("foaf:gender"); }
 	
 	/**
-	 * TODO: Abstract this part.
 	 * @see to.networld.scrawler.interfaces.IFOAFPerson#getImageURL()
 	 */
+	@Override
 	public String getImageURL() {
 		String image = this.getSingleNodeResource("foaf:depiction", "rdf:resource");
 		if ( image == null || image.equals("") )
@@ -79,6 +99,7 @@ public final class Person extends RDFParser implements IFOAFPerson {
 	/**
 	 * @see to.networld.scrawler.interfaces.IFOAFPerson#getDateOfBirth()
 	 */
+	@Override
 	public String getDateOfBirth() { return this.getSingleNode("foaf:dateOfBirth"); }
 	
 	/**
@@ -99,16 +120,19 @@ public final class Person extends RDFParser implements IFOAFPerson {
 	/**
 	 * @see to.networld.scrawler.interfaces.IFOAFPerson#getWorkplaceHomepage()
 	 */
+	@Override
 	public String getWorkplaceHomepage() { return this.getSingleNodeResource("foaf:workplaceHomepage", "rdf:resource"); }
 	
 	/**
 	 * @see to.networld.scrawler.interfaces.IFOAFPerson#getWorkInfoHomepage()
 	 */
+	@Override
 	public String getWorkInfoHomepage() { return this.getSingleNodeResource("foaf:workInfoHomepage", "rdf:resource"); }
 	
 	/**
 	 * @see to.networld.scrawler.interfaces.IFOAFPerson#getOpenid()
 	 */
+	@Override
 	public String getOpenid() { return this.getSingleNodeResource("foaf:openid", "rdf:resource"); }
 	
 	public Vector<Double> getLocation() {
@@ -118,9 +142,6 @@ public final class Person extends RDFParser implements IFOAFPerson {
 			lat = Double.parseDouble(this.getSingleNode("/geo:lat"));
 			lon = Double.parseDouble(this.getSingleNode("/geo:long"));
 		} catch (Exception e) {
-			/**
-			 * XXX: Not the best practice to swallow the exception, but if there is no gps location we skip this step.
-			 */
 			return null;
 		}
 		Vector<Double> geo = new Vector<Double>();
@@ -132,6 +153,7 @@ public final class Person extends RDFParser implements IFOAFPerson {
 	/**
 	 * @see to.networld.scrawler.interfaces.IFOAFPerson#getKnownAgents()
 	 */
+	@Override
 	public Vector<String> getKnownAgents() {
 		Vector<String> retValues = new Vector<String>();
 		retValues.addAll(this.getNodesResource("foaf:knows", "rdf:resource"));
@@ -142,25 +164,30 @@ public final class Person extends RDFParser implements IFOAFPerson {
 	/**
 	 * @see to.networld.scrawler.interfaces.IFOAFPerson#getPublications()
 	 */
+	@Override
 	public Vector<String> getPublications() { return this.getNodesResource("foaf:publications", "rdf:resource"); }
 	
 	/**
 	 * @see to.networld.scrawler.interfaces.IFOAFPerson#getInterests()
 	 */
+	@Override
 	public Vector<String> getInterests() { return this.getNodesResource("foaf:interest", "rdfs:label"); }
 	
 	/**
 	 * @see to.networld.scrawler.interfaces.IFOAFPerson#getEMails()
 	 */
+	@Override
 	public Vector<String> getEMails() { return this.getNodesResource("foaf:mbox", "rdf:resource"); }
 	
 	/**
 	 * @see to.networld.scrawler.interfaces.IFOAFPerson#getPhoneNumbers()
 	 */
+	@Override
 	public Vector<String> getPhoneNumbers() { return this.getNodesResource("foaf:phone", "rdf:resource"); }
 	
 	/**
 	 * @see to.networld.scrawler.interfaces.IFOAFPerson#getDiveCertificate()
 	 */
+	@Override
 	public String getDiveCertificate() { return this.getSingleNodeResource("dive:hasCertification", "rdf:resource"); }
 }
