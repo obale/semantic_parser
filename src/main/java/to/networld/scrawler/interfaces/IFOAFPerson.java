@@ -97,11 +97,31 @@ public interface IFOAFPerson extends IRDFEntity {
 			ontoURI = Ontologies.foafURI,
 			value = "holdsAccount",
 			type = Type.ROOTNODE,
-			subNode = { "accountServiceHomepage", "accountProfilePage", "accountName" }, 
-			subNodeDeep = { 1, 1, 1 },
-			subNodeOntoURI = { Ontologies.foafURI, Ontologies.foafURI, Ontologies.foafURI },
-			subNodeType = { Type.RESOURCE, Type.RESOURCE, Type.LITERAL } )
+			subNode = { "OnlineAccount", "accountServiceHomepage", "accountProfilePage", "accountName" }, 
+			subNodeDeep = { 1, 2, 2, 2 },
+			subNodeOntoURI = { Ontologies.foafURI, Ontologies.foafURI, Ontologies.foafURI, Ontologies.foafURI },
+			subNodeType = { Type.ROOTNODE, Type.RESOURCE, Type.RESOURCE, Type.LITERAL } )
 	public abstract Vector<Account> getAccounts();
+	
+	@RDFProperty(
+			ontoURI = Ontologies.foafURI,
+			value = "currentProject",
+			type = Type.ROOTNODE,
+			subNode = { "Description", "seeAlso" }, 
+			subNodeDeep = { 1, 2 },
+			subNodeOntoURI = { Ontologies.rdfURI, Ontologies.rdfsURI },
+			subNodeType = { Type.ROOTNODE, Type.RESOURCE } )
+	public abstract Vector<String> getCurrentProjects();
+	
+	@RDFProperty(
+			ontoURI = Ontologies.foafURI,
+			value = "pastProject",
+			type = Type.ROOTNODE,
+			subNode = { "Description", "seeAlso" }, 
+			subNodeDeep = { 1, 2 },
+			subNodeOntoURI = { Ontologies.rdfURI, Ontologies.rdfsURI },
+			subNodeType = { Type.ROOTNODE, Type.RESOURCE } )
+	public abstract Vector<String> getPastProjects();
 	
 	@RDFProperty(ontoURI = Ontologies.foafURI, value = "mbox_sha1sum", type = Type.LITERAL)
 	public abstract boolean hasEMail(String email);

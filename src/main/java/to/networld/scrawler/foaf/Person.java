@@ -224,4 +224,16 @@ public final class Person extends RDFParser implements IFOAFPerson {
 		}
 		return retVector;
 	}
+
+	/**
+	 * @see to.networld.scrawler.interfaces.IFOAFPerson#getCurrentProjects()
+	 */
+	@Override
+	public Vector<String> getCurrentProjects() { return this.getNodesResource("foaf:currentProject/rdf:Description/rdfs:seeAlso", "rdf:resource"); }
+
+	/**
+	 * @see to.networld.scrawler.interfaces.IFOAFPerson#getPastProjects()
+	 */
+	@Override
+	public Vector<String> getPastProjects() { return this.getNodesResource("foaf:pastProject/rdf:Description/rdfs:seeAlso", "rdf:resource"); }
 }
