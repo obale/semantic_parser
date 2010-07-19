@@ -209,7 +209,6 @@ public final class Person extends RDFParser implements IFOAFPerson {
 		for ( Element entry : elements ) {
 			Account account = new Account();
 			Element nameNode = (Element) entry.selectSingleNode(entry.getUniquePath() + "//foaf:accountName");
-			System.out.println(entry.getUniquePath() + "//foaf:accountName");
 			if ( nameNode != null )
 				account.setAccountName(nameNode.getTextTrim());
 			
