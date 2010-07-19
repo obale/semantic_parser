@@ -190,4 +190,39 @@ public final class Person extends RDFParser implements IFOAFPerson {
 	 */
 	@Override
 	public String getDiveCertificate() { return this.getSingleNodeResource("dive:hasCertification", "rdf:resource"); }
+	
+	/**
+	 * @see to.networld.scrawler.interfaces.IFOAFPerson#hasEMail(java.lang.String)
+	 */
+	@Override
+	public boolean hasEMail(String email) {
+		throw new NoSuchMethodError("Not implemented yet!");
+	}
+
+	/**
+	 * @see to.networld.scrawler.interfaces.IFOAFPerson#getAccounts()
+	 */
+	@Override
+	public Vector<Account> getAccounts() {
+		List<Element> elements = this.getLinkNodes(this.queryPrefix + "/foaf:holdsAccount");
+		Vector<Account> retVector = new Vector<Account>();
+		for ( Element entry : elements ) {
+			Account account = new Account();
+			Element nameNode = (Element) entry.selectSingleNode(entry.getUniquePath() + "//foaf:accountName");
+			System.out.println(entry.getUniquePath() + "//foaf:accountName");
+			if ( nameNode != null )
+				account.setAccountName(nameNode.getTextTrim());
+			
+			Element serviceHomepageNode = (Element) entry.selectSingleNode(entry.getUniquePath() + "//foaf:accountServiceHomepage");
+			if ( serviceHomepageNode != null )
+				account.setAccountServiceHomepage(serviceHomepageNode.valueOf("@rdf:resource"));
+			
+			Element profilePageNode = (Element) entry.selectSingleNode(entry.getUniquePath() + "//foaf:accountProfilePage");
+			if ( profilePageNode != null )
+				account.setAccountProfilePage(profilePageNode.valueOf("@rdf:resource"));
+			
+			retVector.add(account);
+		}
+		return retVector;
+	}
 }

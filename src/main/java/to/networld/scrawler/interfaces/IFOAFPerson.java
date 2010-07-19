@@ -26,6 +26,7 @@ import to.networld.scrawler.annotations.RDFEntity;
 import to.networld.scrawler.annotations.RDFProperty;
 import to.networld.scrawler.annotations.RDFProperty.Type;
 import to.networld.scrawler.common.Ontologies;
+import to.networld.scrawler.foaf.Account;
 
 /**
  * @author Alex Oberhauser
@@ -83,12 +84,25 @@ public interface IFOAFPerson extends IRDFEntity {
 	@RDFProperty(ontoURI = Ontologies.foafURI, value = "interest", type = Type.RESOURCE_LITERAL)
 	public abstract Vector<String> getInterests();
 
-	@RDFProperty(ontoURI=Ontologies.foafURI, value="mbox")
+	@RDFProperty(ontoURI = Ontologies.foafURI, value = "mbox")
 	public abstract Vector<String> getEMails();
 
-	@RDFProperty(ontoURI=Ontologies.foafURI, value="phone")
+	@RDFProperty(ontoURI = Ontologies.foafURI, value="phone")
 	public abstract Vector<String> getPhoneNumbers();
 
-	@RDFProperty(ontoURI=Ontologies.diveURI, value="hasCertification", type = Type.RESOURCE)
+	@RDFProperty(ontoURI = Ontologies.diveURI, value = "hasCertification", type = Type.RESOURCE)
 	public abstract String getDiveCertificate();
+	
+	@RDFProperty(
+			ontoURI = Ontologies.foafURI,
+			value = "holdsAccount",
+			type = Type.ROOTNODE,
+			subNode = { }, 
+			subNodeDeep = { 1, 1, 1 },
+			subNodeOntoURI = { Ontologies.foafURI, Ontologies.foafURI, Ontologies.foafURI },
+			subNodeType = { Type.RESOURCE, Type.RESOURCE, Type.LITERAL } )
+	public abstract Vector<Account> getAccounts();
+	
+	@RDFProperty(ontoURI = Ontologies.foafURI, value = "mbox_sha1sum", type = Type.LITERAL)
+	public abstract boolean hasEMail(String email);
 }
