@@ -97,7 +97,7 @@ public interface IFOAFPerson extends IRDFEntity {
 			ontoURI = Ontologies.foafURI,
 			value = "holdsAccount",
 			type = Type.ROOTNODE,
-			subNode = { }, 
+			subNode = { "accountServiceHomepage", "accountProfilePage", "accountName" }, 
 			subNodeDeep = { 1, 1, 1 },
 			subNodeOntoURI = { Ontologies.foafURI, Ontologies.foafURI, Ontologies.foafURI },
 			subNodeType = { Type.RESOURCE, Type.RESOURCE, Type.LITERAL } )

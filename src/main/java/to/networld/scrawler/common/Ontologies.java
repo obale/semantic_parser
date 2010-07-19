@@ -36,4 +36,6 @@ public abstract class Ontologies {
 	public static final String rdfsURI = "http://www.w3.org/2000/01/rdf-schema#";
 	public static final String geoURI = "http://www.w3.org/2003/01/geo/wgs84_pos#";
 	public static final String dcURI = "http://purl.org/dc/elements/1.1/";
+	public static final String dctermsURI = "http://purl.org/dc/terms/";
+	public static final String contentURI = "http://purl.org/rss/1.0/modules/content/";
 }
