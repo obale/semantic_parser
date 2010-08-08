@@ -30,7 +30,6 @@ import to.networld.scrawler.interfaces.IDOAPOrganization;
 
 /**
  * @author Alex Oberhauser
- *
  */
 public class DOAPOrganization extends RDFParser implements IDOAPOrganization {
 

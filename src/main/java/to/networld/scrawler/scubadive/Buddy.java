@@ -21,8 +21,8 @@
 package to.networld.scrawler.scubadive;
 
 import java.net.URL;
+import java.util.Vector;
 
-import org.dom4j.Document;
 import org.dom4j.DocumentException;
 
 import to.networld.scrawler.common.RDFParser;
@@ -31,21 +31,12 @@ import to.networld.scrawler.interfaces.IScubaDiveBuddy;
 /**
  * 
  * @author Alex Oberhauser
- *
  */
 public class Buddy extends RDFParser implements IScubaDiveBuddy {
-	private String filename = null;
 	private String nodeid = null;
 	
 	public Buddy(URL _url, String _nodeID) throws DocumentException {
 		super(_url);
-		this.filename = _url.toString();
-		this.document = this.reader.read(_url);
-		this.initDive(_nodeID);
-	}
-	
-	public Buddy(Document _document, String _nodeID) {
-		super(_document);
 		this.initDive(_nodeID);
 	}
 	
@@ -60,12 +51,6 @@ public class Buddy extends RDFParser implements IScubaDiveBuddy {
 		this.namespace.put("geo", "http://www.w3.org/2003/01/geo/wgs84_pos#");
 		this.queryPrefix = "/rdf:RDF/dive:Diver[@rdf:ID='" + _nodeID + "']";
 	}
-	
-	/**
-	 * @see to.networld.scrawler.interfaces.IScubaDiveBuddy#getFilename()
-	 */
-	@Override
-	public String getFilename() { return this.filename; }
 	
 	/**
 	 * @see to.networld.scrawler.interfaces.IScubaDiveBuddy#getNodeID()
@@ -119,9 +104,20 @@ public class Buddy extends RDFParser implements IScubaDiveBuddy {
 	 * @see to.networld.scrawler.interfaces.IScubaDiveBuddy#getUsedEquiptment()
 	 */
 	@Override
-	public Object getUsedEquiptment() {
-		// TODO Auto-generated method stub
-		return null;
+	public Vector<Equipment> getUsedEquiptment() {
+		Vector<String> equipmentID = this.getNodesResource("dive:usedEquipment", "rdf:resource");
+		Vector<Equipment> equipment = new Vector<Equipment>();
+		for ( String entry : equipmentID ) {
+			String oldQueryPrefix = this.queryPrefix;
+			this.queryPrefix = "/rdf:RDF/dive:Equipment[@rdf:ID='" + entry.replace("#", "") + "']";
+			Equipment equipmentEntry = new Equipment();
+			equipmentEntry.setType(this.getSingleNode("dive:equipmentType"));
+			equipmentEntry.setBrand(this.getSingleNode("dive:equipmentBrand"));
+			equipmentEntry.setColor(this.getSingleNode("dive:equipmentColor"));
+			equipment.add(equipmentEntry);
+			this.queryPrefix = oldQueryPrefix;
+		}
+		return equipment;
 	}
 
 	/**

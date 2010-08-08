@@ -36,40 +36,33 @@ import org.jaxen.XPath;
 import org.jaxen.dom4j.Dom4jXPath;
 
 /**
- * Superclass that hiddes the low level RDF parsing code. Each class that needs to parse
- * RDF files should extend from this class.
+ * Superclass that hides the low level RDF parsing code. Each class that needs to parse
+ * RDF files should extend this class.
  * 
  * @author Alex Oberhauser
- *
  */
 public class RDFParser {
 	protected final URL url;
-	protected final SAXReader reader;
-	protected Document document;
-	protected HashMap<String, String> namespace = new HashMap<String, String>();
+	private final SAXReader reader;
+	private final Document document;
+	protected final HashMap<String, String> namespace = new HashMap<String, String>();
 	protected String queryPrefix = "/";
 	
-	public RDFParser(URL _url) throws DocumentException {
+	protected RDFParser(URL _url) throws DocumentException {
 		this.reader = new SAXReader();
 		this.url = _url;
 		this.document = this.reader.read(_url);
 		this.initDefaultNamespace();
 	}
 	
-	public RDFParser(Document _document) {
-		this.reader = new SAXReader();
-		this.url = null;
-		this.document = _document;
-		this.initDefaultNamespace();
-	}
-	
-	protected void initDefaultNamespace() {
+	protected synchronized void initDefaultNamespace() {
 		this.namespace.put("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
 		this.namespace.put("rdfs", "http://www.w3.org/2000/01/rdf-schema#");
+		this.namespace.put("owl", "http://www.w3.org/2002/07/owl#");
 	}
 	
 	@SuppressWarnings("unchecked")
-	protected List<Element> getLinkNodes(String _query, HashMap<String, String> _namespaces) {
+	protected synchronized List<Element> getLinkNodes(String _query, HashMap<String, String> _namespaces) {
 		try {
 			XPath xpath = new Dom4jXPath(_query);
 			xpath.setNamespaceContext(new SimpleNamespaceContext(_namespaces));
@@ -81,7 +74,7 @@ public class RDFParser {
 	}
 	
 	@SuppressWarnings("unchecked")
-	protected List<Element> getLinkNodes(String _query) {
+	protected synchronized List<Element> getLinkNodes(String _query) {
 		return (List<Element>) this.document.selectNodes(_query);
 	}
 	
@@ -91,7 +84,7 @@ public class RDFParser {
 	 * @param _nodeName The name of the node for example 'dive:name'
 	 * @return The string representation of the given node.
 	 */
-	protected String getSingleNode(String _nodeName) {
+	protected synchronized String getSingleNode(String _nodeName) {
 		List<Element> nodeList = this.getLinkNodes(this.queryPrefix + "/" + _nodeName, this.namespace);
 		if ( nodeList.size() > 0 )
 			return nodeList.get(0).getTextTrim();
@@ -105,7 +98,7 @@ public class RDFParser {
 	 * @param _nodeName The name of the node for example 'dive:name'
 	 * @return The string representation of the given node. If found more than one times the Vector has more elements.
 	 */
-	protected Vector<String> getNodes(String _nodeName) {
+	protected synchronized Vector<String> getNodes(String _nodeName) {
 		List<Element> nodeList = this.getLinkNodes(this.queryPrefix + "/" + _nodeName, this.namespace);
 		Vector<String> retValues = new Vector<String>();
 		for ( Element entry : nodeList ) {
@@ -122,7 +115,7 @@ public class RDFParser {
 	 * @param _nodeName The name of the node for example 'dive:name'
 	 * @return The resource as string representation of the given node.
 	 */
-	protected String getSingleNodeResource(String _nodeName, String _resourceName) {
+	protected synchronized String getSingleNodeResource(String _nodeName, String _resourceName) {
 		List<Element> nodeList = this.getLinkNodes(this.queryPrefix + "/" + _nodeName, this.namespace);
 		if ( nodeList.size() > 0 )
 			return nodeList.get(0).valueOf("@" + _resourceName);
@@ -136,7 +129,7 @@ public class RDFParser {
 	 * @param _nodeName The name of the node for example 'dive:name'
 	 * @return The resource as string representation of the given node. If found more than one times the Vector has more elements.
 	 */
-	protected Vector<String> getNodesResource(String _nodeName, String _resourceName) {
+	protected synchronized Vector<String> getNodesResource(String _nodeName, String _resourceName) {
 		List<Element> nodeList = this.getLinkNodes(this.queryPrefix + "/" + _nodeName, this.namespace);
 		Vector<String> retValues = new Vector<String>();
 		for ( Element entry : nodeList ) {
@@ -147,5 +140,5 @@ public class RDFParser {
 		return retValues;
 	}
 	
-	public String getURI() { return this.url.toString(); }
+	public synchronized URL getURL() { return this.url; }
 }

@@ -7,15 +7,24 @@
                 <eclipse.dependency>true</eclipse.dependency>
         </properties>
 
+        <distributionManagement>
+                <snapshotRepository>
+                        <id>networld-ssh-repo</id>
+                        <name>Networld Repository</name>
+                        <url>scp://repo1.networld.to:64446/home/www/repo1</url>
+                </snapshotRepository>
+        </distributionManagement>
+
+
         <modelVersion>4.0.0</modelVersion>
-        <groupId>to.networld.scrawler</groupId>
+        <groupId>to.networld.semantic</groupId>
         <artifactId>scrawler</artifactId>
         <version>0.1-SNAPSHOT</version>
         <packaging>jar</packaging>
         <url>http://scrawler.networld.to</url>
         <name>Networld Semantic Crawler</name>
         <description>SCrawler is a crawler that searches information from the
-        Semantic Web</description>
+                Semantic Web</description>
 
         <organization>
                 <name>Networld</name>
@@ -131,7 +140,6 @@
                                         </execution>
                                 </executions>
                         </plugin>
-
                         <plugin>
                                 <groupId>org.apache.maven.plugins</groupId>
                                 <artifactId>maven-jar-plugin</artifactId>
@@ -148,7 +156,6 @@
                                         </archive>
                                 </configuration>
                         </plugin>
-
                 </plugins>
         </build>
 

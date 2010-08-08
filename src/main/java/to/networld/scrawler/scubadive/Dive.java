@@ -34,18 +34,14 @@ import to.networld.scrawler.interfaces.IScubaDiveDive;
 /**
  * 
  * @author Alex Oberhauser
- *
  */
 public class Dive extends RDFParser implements IScubaDiveDive {
-	private String filename = null;
 	private String nodeid = null;
 	private int id = -1;
 	private String name = null;
 	
 	public Dive(URL _url, String _nodeID) throws DocumentException {
 		super(_url);
-		this.filename = _url.toString();
-		this.document = this.reader.read(_url);
 		this.initDive(_nodeID);
 	}
 	
@@ -166,14 +162,17 @@ public class Dive extends RDFParser implements IScubaDiveDive {
 		Vector<IScubaDiveBuddy> buddies = new Vector<IScubaDiveBuddy>();
 		Vector<String> buddiesPostfix = this.getNodesResource("dive:partner", "rdf:resource");
 		for ( String entry : buddiesPostfix ) {
-			IScubaDiveBuddy buddy = new Buddy(this.document, entry.replace("#", ""));
-			buddies.add(buddy);
+			try {
+				IScubaDiveBuddy buddy = new Buddy(this.url, entry.replace("#", ""));
+				buddies.add(buddy);
+			} catch (DocumentException e) {
+				e.printStackTrace();
+				return null;
+			}
 		}
 		
 		return buddies;
 	}
-	
-	public String getFilename() { return this.filename; }
 	
 	public String getNodeID() { return this.nodeid; }
 	
@@ -204,6 +203,11 @@ public class Dive extends RDFParser implements IScubaDiveDive {
 		if ( diverStr == null || diverStr.equals("") )
 			return null;
 		else
-			return new Buddy(this.document, diverStr.replace("#", ""));
+			try {
+				return new Buddy(this.url, diverStr.replace("#", ""));
+			} catch (DocumentException e) {
+				e.printStackTrace();
+				return null;
+			}
 	}
 }

@@ -20,7 +20,10 @@
 
 package to.networld.scrawler.foaf;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Vector;
 
@@ -33,12 +36,10 @@ import to.networld.scrawler.interfaces.IFOAFPerson;
  * Handles a FOAF Person. The information are read out with the help of XPath queries.
  * 
  * @author Alex Oberhauser
- *
  */
 public final class Person extends RDFParser implements IFOAFPerson {		
 	
 	/**
-	 * 
 	 * @param _url The URL that points to a valid FOAF file
 	 * @throws Exception Generic exception, doesn't matter what error occurs the agent could not be instantiated.
 	 */
@@ -83,6 +84,7 @@ public final class Person extends RDFParser implements IFOAFPerson {
 	/**
 	 * @see to.networld.scrawler.interfaces.IFOAFPerson#getGender()
 	 */
+	@Override
 	public String getGender() { return this.getSingleNode("foaf:gender"); }
 	
 	/**
@@ -105,16 +107,19 @@ public final class Person extends RDFParser implements IFOAFPerson {
 	/**
 	 * @see to.networld.scrawler.interfaces.IFOAFPerson#getWebsite()
 	 */
+	@Override
 	public String getWebsite() { return this.getSingleNodeResource("foaf:homepage", "rdf:resource"); }
 	
 	/**
 	 * @see to.networld.scrawler.interfaces.IFOAFPerson#getWeblog()
 	 */
+	@Override
 	public String getWeblog() { return this.getSingleNodeResource("foaf:weblog", "rdf:resource"); }
 	
 	/**
 	 * @see to.networld.scrawler.interfaces.IFOAFPerson#getSchoolHomepage()
 	 */
+	@Override
 	public String getSchoolHomepage() { return this.getSingleNodeResource("/foaf:schoolHomepage", "rdf:resource"); }
 	
 	/**
@@ -135,16 +140,20 @@ public final class Person extends RDFParser implements IFOAFPerson {
 	@Override
 	public String getOpenid() { return this.getSingleNodeResource("foaf:openid", "rdf:resource"); }
 	
+	/**
+	 * @see to.networld.scrawler.interfaces.IFOAFPerson#getLocation()
+	 */
+	@Override
 	public Vector<Double> getLocation() {
 		double lat = -1.0;
 		double lon = -1.0;
+		Vector<Double> geo = new Vector<Double>();
 		try {
 			lat = Double.parseDouble(this.getSingleNode("/geo:lat"));
 			lon = Double.parseDouble(this.getSingleNode("/geo:long"));
 		} catch (Exception e) {
-			return null;
+			return geo;
 		}
-		Vector<Double> geo = new Vector<Double>();
 		geo.add(0, lat);
 		geo.add(1, lon);
 		return geo;
@@ -191,12 +200,49 @@ public final class Person extends RDFParser implements IFOAFPerson {
 	@Override
 	public String getDiveCertificate() { return this.getSingleNodeResource("dive:hasCertification", "rdf:resource"); }
 	
+    private static String convertToHex(byte[] data) { 
+        StringBuffer buf = new StringBuffer();
+        for (int i = 0; i < data.length; i++) { 
+            int halfbyte = (data[i] >>> 4) & 0x0F;
+            int two_halfs = 0;
+            do { 
+                if ((0 <= halfbyte) && (halfbyte <= 9)) 
+                    buf.append((char) ('0' + halfbyte));
+                else 
+                    buf.append((char) ('a' + (halfbyte - 10)));
+                halfbyte = data[i] & 0x0F;
+            } while(two_halfs++ < 1);
+        } 
+        return buf.toString();
+    } 
+
+	
+	private static String computeSHA1(String _text) throws NoSuchAlgorithmException, UnsupportedEncodingException  { 
+	        MessageDigest md = MessageDigest.getInstance("SHA-1");
+	        byte[] sha1hash = new byte[40];
+	        md.update(_text.getBytes("iso-8859-1"), 0, _text.length());
+	        sha1hash = md.digest();
+	        return convertToHex(sha1hash);
+
+	}
+	
 	/**
 	 * @see to.networld.scrawler.interfaces.IFOAFPerson#hasEMail(java.lang.String)
 	 */
 	@Override
-	public boolean hasEMail(String email) {
-		throw new NoSuchMethodError("Not implemented yet!");
+	public boolean hasEMail(String _email) {
+		try {
+			String sha1value = computeSHA1(_email);
+			Vector<String> mboxValues = this.getNodes("foaf:mbox_sha1sum");
+			for ( String entry : mboxValues ) {
+				if ( sha1value.equals(entry) ) return true;
+			}
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	/**
@@ -210,15 +256,15 @@ public final class Person extends RDFParser implements IFOAFPerson {
 			Account account = new Account();
 			Element nameNode = (Element) entry.selectSingleNode(entry.getUniquePath() + "//foaf:accountName");
 			if ( nameNode != null )
-				account.setAccountName(nameNode.getTextTrim());
+				account.setName(nameNode.getTextTrim());
 			
 			Element serviceHomepageNode = (Element) entry.selectSingleNode(entry.getUniquePath() + "//foaf:accountServiceHomepage");
 			if ( serviceHomepageNode != null )
-				account.setAccountServiceHomepage(serviceHomepageNode.valueOf("@rdf:resource"));
+				account.setServiceHomepage(serviceHomepageNode.valueOf("@rdf:resource"));
 			
 			Element profilePageNode = (Element) entry.selectSingleNode(entry.getUniquePath() + "//foaf:accountProfilePage");
 			if ( profilePageNode != null )
-				account.setAccountProfilePage(profilePageNode.valueOf("@rdf:resource"));
+				account.setProfilePage(profilePageNode.valueOf("@rdf:resource"));
 			
 			retVector.add(account);
 		}
@@ -236,4 +282,5 @@ public final class Person extends RDFParser implements IFOAFPerson {
 	 */
 	@Override
 	public Vector<String> getPastProjects() { return this.getNodesResource("foaf:pastProject/rdf:Description/rdfs:seeAlso", "rdf:resource"); }
+	
 }

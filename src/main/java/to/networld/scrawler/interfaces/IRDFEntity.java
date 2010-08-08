@@ -20,10 +20,17 @@
 
 package to.networld.scrawler.interfaces;
 
+import java.net.URL;
+
 /**
  * @author Alex Oberhauser
  *
  */
 public interface IRDFEntity {
-	public String getURI();
+	
+	/**
+	 * 
+	 * @return A URL object that is related to this RDF entity.
+	 */
+	public URL getURL();
 }

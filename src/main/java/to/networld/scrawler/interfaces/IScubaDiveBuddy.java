@@ -20,10 +20,13 @@
 
 package to.networld.scrawler.interfaces;
 
+import java.util.Vector;
+
 import to.networld.scrawler.annotations.RDFEntity;
 import to.networld.scrawler.annotations.RDFProperty;
 import to.networld.scrawler.annotations.RDFProperty.Type;
 import to.networld.scrawler.common.Ontologies;
+import to.networld.scrawler.scubadive.Equipment;
 
 /**
  * @author Alex Oberhauser
@@ -33,8 +36,6 @@ import to.networld.scrawler.common.Ontologies;
 public interface IScubaDiveBuddy {
 	
 	public abstract void initDive(String _nodeID);
-
-	public abstract String getFilename();
 
 	public abstract String getNodeID();
 
@@ -60,7 +61,7 @@ public interface IScubaDiveBuddy {
 	public abstract String getTotalDivesUntilNow();
 	
 	@RDFProperty(ontoURI=Ontologies.diveURI, value="usedEquipment", type = Type.RESOURCE)
-	public abstract Object getUsedEquiptment();
+	public abstract Vector<Equipment> getUsedEquiptment();
 	
 	@RDFProperty(ontoURI=Ontologies.diveURI, value="seeDiverProfile", type = Type.RESOURCE)
 	public abstract String getDiverProfileURI();

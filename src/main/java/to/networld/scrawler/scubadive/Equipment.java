@@ -18,36 +18,32 @@
  * along with this software.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package to.networld.scrawler.rdfa;
-
-import java.net.URL;
-import java.util.List;
-
-import org.dom4j.DocumentException;
-import org.dom4j.Element;
-
-import to.networld.scrawler.common.RDFParser;
+package to.networld.scrawler.scubadive;
 
 /**
  * @author Alex Oberhauser
+ *
  */
-public class MetaData extends RDFParser {
-
-	/**
-	 * @param url
-	 * @throws DocumentException
-	 */
-	public MetaData(URL url) throws DocumentException {
-		super(url);
-		//this.document = this.reader.read(url);
-		this.namespace.put("", "http://www.w3.org/1999/xhtml");
-		this.namespace.put("dc", "http://purl.org/dc/elements/1.1/");
+public class Equipment {
+	private String type = null;
+	private String brand = null;
+	private String color = null;
+	
+	public synchronized void setType(String _type) {
+		this.type = _type;
 	}
 	
-	public String getAuthor() {
-		List<Element> elements = this.getLinkNodes("html");
-		System.out.println(elements.get(0).asXML());
-		return null;
+	public synchronized void setBrand(String _brand) {
+		this.brand = _brand;
 	}
-
+	
+	public synchronized void setColor(String _color) {
+		this.color = _color;
+	}
+	
+	public synchronized String getType() { return this.type; }
+	
+	public synchronized String getBrand() { return this.brand; }
+	
+	public synchronized String getColor() { return this.color; }
 }
