@@ -45,8 +45,8 @@
 
         <scm>
                 <tag>HEAD</tag>
-                <connection>scm:git:git://networld.to/var/scm/ai/scrawler.git</connection>
-                <developerConnection>scm:git:ssh://${env.USER}@networld.to:64446/var/scm/ai/scrawler.git</developerConnection>
+                <connection>scm:git:git://networld.to/var/scm/libs/semantic_crawler.git</connection>
+                <developerConnection>scm:git:ssh://${env.USER}@networld.to:64446/var/scm/libs/semantic_crawler.git</developerConnection>
         </scm>
 
         <developers>
