@@ -105,7 +105,7 @@ public class Post extends RDFParser implements ISIOCPost {
 	public Vector<String> getTopics() { return this.getNodesResource("sioc:topic", "rdfs:label"); }
 
 	/**
-	 * @see to.networld.scrawler.interfaces.ISIOCPost#getCreator()
+	 * @see to.networld.scrawler.interfaces.ISIOCPost#getCreators()
 	 */
 	@Override
 	public Vector<String> getCreators() { return this.getNodesResource("sioc:has_creator/sioc:User", "rdfs:label"); }
