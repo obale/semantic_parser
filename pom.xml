@@ -8,6 +8,11 @@
         </properties>
 
         <distributionManagement>
+                <repository>
+                        <id>networld-ssh-repo</id>
+                        <name>Networld Repository</name>
+                        <url>scp://repo1.networld.to:64446/home/www/repo1</url>
+                </repository>
                 <snapshotRepository>
                         <id>networld-ssh-repo</id>
                         <name>Networld Repository</name>
