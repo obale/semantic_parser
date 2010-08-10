@@ -50,9 +50,21 @@ public class RDFParser {
 	
 	protected RDFParser(URL _url) throws DocumentException {
 		this.reader = new SAXReader();
+		this.setReaderOptions();
 		this.url = _url;
 		this.document = this.reader.read(_url);
 		this.initDefaultNamespace();
+	}
+
+	/**
+	 * Set optimized reader options to be able to parse the files faster.
+	 */
+	private synchronized void setReaderOptions() {
+		this.reader.setValidation(false);
+		this.reader.setIgnoreComments(true);
+		this.reader.setIncludeExternalDTDDeclarations(false);
+		this.reader.setIncludeInternalDTDDeclarations(false);
+		this.reader.setStripWhitespaceText(true);
 	}
 	
 	protected synchronized void initDefaultNamespace() {
