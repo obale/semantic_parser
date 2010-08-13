@@ -25,6 +25,7 @@ import java.util.Vector;
 
 import org.dom4j.DocumentException;
 
+import to.networld.scrawler.common.Ontologies;
 import to.networld.scrawler.common.RDFParser;
 import to.networld.scrawler.interfaces.IDOAPOrganization;
 
@@ -39,8 +40,8 @@ public class DOAPOrganization extends RDFParser implements IDOAPOrganization {
 	 */
 	public DOAPOrganization(URL url) throws DocumentException {
 		super(url);
-		this.namespace.put("foaf", "http://xmlns.com/foaf/0.1/");
-		this.namespace.put("doap", "http://usefulinc.com/ns/doap#");
+		this.namespace.put("foaf", Ontologies.foafURI);
+		this.namespace.put("doap", Ontologies.doapURI);
 		this.queryPrefix = "/rdf:RDF/foaf:Organization";
 	}
 

@@ -29,6 +29,7 @@ import java.util.Vector;
 
 import org.dom4j.Element;
 
+import to.networld.scrawler.common.Ontologies;
 import to.networld.scrawler.common.RDFParser;
 import to.networld.scrawler.interfaces.IFOAFPerson;
 
@@ -45,9 +46,9 @@ public final class Person extends RDFParser implements IFOAFPerson {
 	 */
 	public Person(URL _url) throws Exception {
 		super(_url);
-		this.namespace.put("dive", "http://scubadive.networld.to/dive.rdf#");
-		this.namespace.put("foaf", "http://xmlns.com/foaf/0.1/");
-		this.namespace.put("geo", "http://www.w3.org/2003/01/geo/wgs84_pos#");
+		this.namespace.put("dive", Ontologies.diveURI);
+		this.namespace.put("foaf", Ontologies.foafURI);
+		this.namespace.put("geo", Ontologies.geoURI);
 
 		this.setQueryPrefix();
 	}

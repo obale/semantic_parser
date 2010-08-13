@@ -125,4 +125,5 @@ public interface IFOAFPerson extends IRDFEntity {
 	
 	@RDFProperty(ontoURI = Ontologies.foafURI, value = "mbox_sha1sum", type = Type.LITERAL)
 	public abstract boolean hasEMail(String email);
+	
 }

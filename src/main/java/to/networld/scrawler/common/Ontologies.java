@@ -34,8 +34,10 @@ public abstract class Ontologies {
 	public static final String skosURI = "http://www.w3.org/2009/08/skos-reference/skos.rdf#";
 	public static final String rdfURI = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
 	public static final String rdfsURI = "http://www.w3.org/2000/01/rdf-schema#";
+	public static final String owlURI = "http://www.w3.org/2002/07/owl#";
 	public static final String geoURI = "http://www.w3.org/2003/01/geo/wgs84_pos#";
 	public static final String dcURI = "http://purl.org/dc/elements/1.1/";
 	public static final String dctermsURI = "http://purl.org/dc/terms/";
 	public static final String contentURI = "http://purl.org/rss/1.0/modules/content/";
+	public static final String icalURI = "http://www.w3.org/2002/12/cal#";
 }

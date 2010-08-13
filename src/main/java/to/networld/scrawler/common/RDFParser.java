@@ -68,9 +68,9 @@ public class RDFParser {
 	}
 	
 	protected synchronized void initDefaultNamespace() {
-		this.namespace.put("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
-		this.namespace.put("rdfs", "http://www.w3.org/2000/01/rdf-schema#");
-		this.namespace.put("owl", "http://www.w3.org/2002/07/owl#");
+		this.namespace.put("rdf", Ontologies.rdfURI);
+		this.namespace.put("rdfs", Ontologies.rdfsURI);
+		this.namespace.put("owl", Ontologies.owlURI);
 	}
 	
 	@SuppressWarnings("unchecked")

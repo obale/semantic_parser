@@ -28,8 +28,7 @@ import java.net.URL;
  */
 public interface IRDFEntity {
 	
-	/**
-	 * 
+	/*
 	 * @return A URL object that is related to this RDF entity.
 	 */
 	public URL getURL();
