@@ -1,3 +1,7 @@
 target
 target/*
+.settings
+.settings/*
+.project
+.classpath
 Main.java

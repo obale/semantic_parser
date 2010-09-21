@@ -1,5 +1,5 @@
 /**
- * Semantic Crawler Library
+ * scrawler - to.networld.scrawler.ebooks
  *
  * Copyright (C) 2010 by Networld Project
  * Written by Alex Oberhauser <oberhauseralex@networld.to>

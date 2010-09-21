@@ -104,6 +104,17 @@ public class RDFParser {
 			return null;
 	}
 	
+	protected synchronized String getConditionalSingleNode(String _nodeName, String _resourceName, String _resourceValue) {
+		List<Element> nodeList = this.getLinkNodes(this.queryPrefix + "/" + _nodeName, this.namespace);
+		if ( nodeList.size() > 0 ) {
+			for ( Element node : nodeList ) {
+				if ( node.valueOf("@" + _resourceName).equalsIgnoreCase(_resourceValue) )
+					return node.getTextTrim();
+			}
+		}
+		return null;
+	}
+	
 	/**
 	 * Please set before you call the function the variables this.namespace and this.queryPrefix.
 	 * 

@@ -40,4 +40,5 @@ public abstract class Ontologies {
 	public static final String dctermsURI = "http://purl.org/dc/terms/";
 	public static final String contentURI = "http://purl.org/rss/1.0/modules/content/";
 	public static final String icalURI = "http://www.w3.org/2002/12/cal#";
+	public static final String opfURI = "http://www.idpf.org/2007/opf";
 }
