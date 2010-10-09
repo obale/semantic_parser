@@ -48,7 +48,7 @@ public interface IEPub extends IRDFEntity {
 	public abstract String getDescription();
 	
 	@RDFProperty(ontoURI=Ontologies.dcURI, value="date", type = Type.LITERAL)
-	public abstract String getOrginalPublicationDate();
+	public abstract String getOriginalPublicationDate();
 	
 	@RDFProperty(ontoURI=Ontologies.dcURI, value="date", type = Type.LITERAL)
 	public abstract String getOPSPublicationDate();

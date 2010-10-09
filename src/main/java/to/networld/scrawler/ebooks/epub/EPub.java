@@ -79,7 +79,7 @@ public class EPub implements IEPub {
 		this.title = this.epubMeta.getTitle();
 		this.description = this.epubMeta.getDescription();
 		this.language = this.epubMeta.getLanguage();
-		this.orgPublicationDate = this.epubMeta.getOrginalPublicationDate();
+		this.orgPublicationDate = this.epubMeta.getOriginalPublicationDate();
 		this.opsPublicationDate = this.epubMeta.getOPSPublicationDate();
 		this.subjects = this.epubMeta.getSubjects();
 		this.publisher = this.epubMeta.getPublisher();
@@ -112,10 +112,10 @@ public class EPub implements IEPub {
 	public String getLanguage() { return this.language; }
 
 	/**
-	 * @see to.networld.scrawler.interfaces.IEPub#getOrginalPublicationDate()
+	 * @see to.networld.scrawler.interfaces.IEPub#getOriginalPublicationDate()
 	 */
 	@Override
-	public String getOrginalPublicationDate() { return this.orgPublicationDate; }
+	public String getOriginalPublicationDate() { return this.orgPublicationDate; }
 
 	/**
 	 * @see to.networld.scrawler.interfaces.IEPub#getPublisher()

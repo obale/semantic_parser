@@ -63,10 +63,10 @@ public class EPubMeta extends RDFParser implements IEPub {
 	public String getLanguage() { return this.getSingleNode("dc:language"); }
 
 	/**
-	 * @see to.networld.scrawler.interfaces.IEPub#getOrginalPublicationDate()
+	 * @see to.networld.scrawler.interfaces.IEPub#getOriginalPublicationDate()
 	 */
 	@Override
-	public String getOrginalPublicationDate() { return this.getConditionalSingleNode("dc:date", "opf:event", "original-publication"); }
+	public String getOriginalPublicationDate() { return this.getConditionalSingleNode("dc:date", "opf:event", "original-publication"); }
 
 	/**
 	 * @see to.networld.scrawler.interfaces.IEPub#getPublisher()
