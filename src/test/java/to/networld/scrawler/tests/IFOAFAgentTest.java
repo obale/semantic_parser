@@ -24,7 +24,7 @@ public class IFOAFAgentTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		this.testAgent = new Person(new URL("http://devnull.networld.to/foaf.rdf"));
+		this.testAgent = new Person(new URL("http://alex-oberhauser.com/foaf.rdf"));
 	}
 
 	/**
@@ -34,7 +34,7 @@ public class IFOAFAgentTest {
 	public void tearDown() throws Exception {
 		this.testAgent = null;
 	}
-	
+
 	/**
 	 * XXX: If the FOAF file changes than maybe the test fails. Please be patient.
 	 */
@@ -42,14 +42,10 @@ public class IFOAFAgentTest {
 	public void testPersonalFOAFFileFirst() {
 		Assert.assertEquals("Alex Oberhauser", this.testAgent.getName());
 		Assert.assertEquals("Male", this.testAgent.getGender());
-		Assert.assertEquals("http://obale.myopenid.com/", this.testAgent.getOpenid());
-		Assert.assertEquals("http://devnull.networld.to/", this.testAgent.getWebsite());
-		Assert.assertEquals("http://networld.to/", this.testAgent.getWeblog());
-		Assert.assertEquals("http://informatik.uibk.ac.at", this.testAgent.getSchoolHomepage());
-		Assert.assertEquals("http://sti2.at", this.testAgent.getWorkplaceHomepage());
-		Assert.assertEquals("[47.263348, 11.346295]", this.testAgent.getLocation().toString());
+		Assert.assertEquals("http://www.alex-oberhauser.com", this.testAgent.getWebsite());
+		Assert.assertEquals("http://blog.networld.to", this.testAgent.getWeblog());
 		Assert.assertEquals("http://scubadive.networld.to/padi.rdf#AOW", this.testAgent.getDiveCertificate());
-		
+
 		Vector<String> friendVector = this.testAgent.getKnownAgents();
 		for ( String entry : friendVector ) {
 			Assert.assertNotNull(entry);
